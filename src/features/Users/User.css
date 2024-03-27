@@ -1,0 +1,42 @@
+.users {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2em;
+  align-items: center;
+  justify-items: center;
+  margin-top: 6em;
+}
+
+.user {
+  width: 350px;
+  height: 450px;
+  border: 1px solid gray;
+  padding: 1em;
+  background: white;
+  color: gray;
+  text-align: center;
+}
+
+.user img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid gray;
+}
+
+.positionEmail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.statistics {
+  display: flex;
+  /* padding: 2em; */
+}
+
+.statisticItem {
+  display: flex;
+  flex-direction: column-reverse;
+}
