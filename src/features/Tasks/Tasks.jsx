@@ -13,13 +13,13 @@ const Tasks = () => {
     },
     {
       taskStatus: "Pending Tasks",
-      taskNumber: 223,
+      taskNumber: 57,
       id: Math.random(),
       color: "#968ff8",
     },
     {
       taskStatus: "Completed Tasks",
-      taskNumber: 223,
+      taskNumber: 1425,
       id: Math.random(),
       color: "#2ecc71",
     },
