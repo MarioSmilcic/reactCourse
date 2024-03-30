@@ -1,0 +1,21 @@
+.tasks {
+  background: white;
+  color: black;
+  padding: 1em;
+  font-weight: bold;
+}
+
+.tasksInner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  justify-items: center;
+  align-items: center;
+  color: white;
+}
+
+.task {
+  width: 150px;
+  height: 100px;
+  border-radius: 1em;
+}
