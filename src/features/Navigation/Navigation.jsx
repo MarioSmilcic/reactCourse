@@ -27,6 +27,7 @@ const Navigation = () => {
       <Link to={{ pathname: "/work" }}>Work</Link>
       <Link to={{ pathname: "/posts" }}>Posts</Link>
       <Link to={{ pathname: "/users" }}>Users</Link>
+      <Link to={{ pathname: "/tasks" }}>Tasks</Link>
     </nav>
   );
 };
