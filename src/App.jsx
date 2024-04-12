@@ -15,6 +15,7 @@ import Users from "./features/Users/Users";
 import PostById from "./features/Posts/components/PostById";
 import Tasks from "./features/Tasks/Tasks";
 import Clicks from "./features/Clicks/Clicks";
+import Cart from "./features/Cart/Cart";
 // import Paragraph from "./Paragraph";
 // import Card from "./Card";
 
@@ -120,6 +121,7 @@ const App = () => {
           <Route path="/posts/:postId" element={<PostById />} />
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/clicks" element={<Clicks />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </BrowserRouter>
       {/* <p>Pozdrav Vite + React</p> */}

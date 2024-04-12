@@ -12,10 +12,6 @@ const Clicks = () => {
     addMultiNumberToClicks,
   } = useClicksStore();
 
-  const addNumberToGlobal = (clicks) => {
-    clicks + numberToAdd;
-  };
-
   return (
     <div>
       <h2>Clicks</h2>

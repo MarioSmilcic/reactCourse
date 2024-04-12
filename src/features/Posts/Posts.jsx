@@ -2,8 +2,14 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "./Posts.css";
 import { useNavigate } from "react-router-dom";
+import { useCartStore } from "../../stores/cart/cart";
+import { useClicksStore } from "../../stores/clicks/clicks.store";
 
 const Posts = () => {
+  const { addItemToCart, cart } = useCartStore();
+
+  const { incrementNumberOfClicks } = useClicksStore();
+
   const navigate = useNavigate();
   const [data, setData] = useState([]);
 
@@ -35,18 +41,31 @@ const Posts = () => {
   };
 
   return (
-    /* {data.map((post) => (
-        <div key={post.id}>
-          <h1>{post.title}</h1>
-          <p>{post.body}</p>
-        </div>
-      ))} */
     <div className="allPosts">
       {data.map((post) => (
         <div key={post.id} className="posts">
-          <h2 onClick={() => handleNavigateToPostId(post.id)}>{post.title}</h2>
-          <p>{post.body}</p>
-          <button onClick={() => handleDeletePostById(post.id)}>Delete</button>
+          <div>
+            <h2 onClick={() => handleNavigateToPostId(post.id)}>
+              {post.title}
+            </h2>
+            <p>{post.body}</p>
+          </div>
+          <div className="buttons">
+            <button onClick={() => handleDeletePostById(post.id)}>
+              Delete
+            </button>
+            <button
+              onClick={() =>
+                addItemToCart({
+                  // id: post.id,
+                  id: Math.random(),
+                  title: post.title,
+                }) & incrementNumberOfClicks()
+              }
+            >
+              Add to cart
+            </button>
+          </div>
         </div>
       ))}
     </div>

@@ -1,0 +1,14 @@
+.cart {
+  border: 1px solid gray;
+  padding: 1em;
+  width: 400px;
+  height: 200px;
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: capitalize;
+  background: #f9f7f1;
+  color: #2f2f2f;
+}
