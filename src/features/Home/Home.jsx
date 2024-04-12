@@ -5,9 +5,9 @@ import { useClicksStore } from "../../stores/clicks/clicks.store";
 
 const Home = () => {
   const {
-    clicks,
-    incrementNumberOfClicks,
-    resetClicksCount,
+    // clicks,
+    // incrementNumberOfClicks,
+    // resetClicksCount,
     decrementNumberOfClicks,
   } = useClicksStore();
 
