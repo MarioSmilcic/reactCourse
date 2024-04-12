@@ -9,10 +9,12 @@ const Cart = () => {
 
   return (
     <div>
-      <h2>Cart Items: {clicks}</h2>
-      <button onClick={() => resetCart() & resetClicksCount()}>
-        Reset Cart
-      </button>
+      <div className="cartState">
+        <h2>Cart Items: {clicks}</h2>
+        <button onClick={() => resetCart() & resetClicksCount()}>
+          Reset Cart
+        </button>
+      </div>
       <div>
         {cart.map((cart) => (
           <div key={cart.id} className="cart">
