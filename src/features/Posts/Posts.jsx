@@ -58,6 +58,7 @@ const Posts = () => {
               onClick={() =>
                 addItemToCart({
                   // id: post.id,
+                  postId: post.id,
                   id: Math.random(),
                   title: post.title,
                 }) & incrementNumberOfClicks()
