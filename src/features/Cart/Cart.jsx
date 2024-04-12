@@ -17,6 +17,7 @@ const Cart = () => {
         {cart.map((cart) => (
           <div key={cart.id} className="cart">
             <h4>{cart.title}</h4>
+            <p>Post id: {cart.postId}</p>
             <button
               onClick={() =>
                 removeItemFromCart(cart.id) & decrementNumberOfClicks()
