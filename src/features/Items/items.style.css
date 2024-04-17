@@ -1,0 +1,129 @@
+.item_list {
+  width: 100%;
+  max-width: 95%;
+  margin: 30px 0;
+  display: grid;
+  /* grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); */
+  grid-template-columns: repeat(4, 1fr);
+  /* grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); */
+  /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
+  justify-items: center;
+  gap: 20px;
+}
+.item {
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.item img {
+  max-height: 200px;
+  /* max-height: 150px; */
+  aspect-ratio: 3/2;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.item_description {
+  max-width: 90%;
+  width: 100%;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.item_description h3,
+.item_description p {
+  margin: 0;
+  padding: 0;
+}
+
+.item_description button {
+  background-color: #f0c040;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.item_description button:hover {
+  background-color: #f0a040;
+}
+
+.cart_icon {
+  width: 30px;
+  height: 30px;
+  margin-left: auto;
+  margin-right: 20px;
+  position: relative;
+  cursor: pointer;
+}
+.cart_icon img {
+  width: 100%;
+}
+
+.cart_icon span {
+  background-color: red;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: small;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: -5px;
+  top: -5px;
+}
+
+.items_in_cart {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.item_in_cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3em;
+  align-items: center;
+  background: white;
+  color: black;
+}
+
+.articleImg {
+  height: 100px;
+}
+
+.recycle {
+  width: 30px;
+  cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+  gap: 1em;
+}
+
+.buttons button {
+  width: 15em;
+}
+
+.clear_cart {
+  background-color: red;
+}
+
+.order_button {
+  background-color: #f0c040;
+  color: black;
+}
+
+.order_button button:hover {
+  background-color: #f0a040;
+}
