@@ -89,7 +89,8 @@
 
 .item_in_cart {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
+  justify-content: space-between;
   align-items: center;
   gap: 3em;
   align-items: center;
@@ -98,12 +99,15 @@
 }
 
 .articleImg {
-  height: 100px;
+  /* height: 100px; */
+  width: 200px;
 }
 
 .recycle {
   width: 30px;
   cursor: pointer;
+  /* margin: 5em; */
+  margin-right: 1em;
 }
 
 .buttons {
