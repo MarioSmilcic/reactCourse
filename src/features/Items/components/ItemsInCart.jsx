@@ -36,7 +36,7 @@ const ItemsInCart = () => {
         </div>
       ))}
       <div>
-        <h3>Total price for all items: {totalSum}</h3>
+        <h3>Total price for all items: {totalSum.toFixed(2)}</h3>
         <div className="buttons">
           <button
             className="order_button"
