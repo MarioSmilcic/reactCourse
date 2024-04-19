@@ -14,7 +14,7 @@ const Item = ({ image, title, description, price }) => {
       <div className="item_description">
         <h3>{title}</h3>
         <p>{description}</p>
-        <p>{price}</p>
+        <p>${price}</p>
         <button
           onClick={() =>
             addItemToCart({
