@@ -1,0 +1,95 @@
+.pocemons {
+  margin-top: 4em;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1em;
+  background-color: white;
+  padding: 3em;
+}
+
+.pocemon {
+  color: black;
+}
+
+.pocemon p {
+  color: #9f9f9f;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.pocemon img {
+  background-color: #f2f1f1;
+}
+
+.pocemon_info {
+  display: flex;
+  flex-direction: column;
+  justfiy-content: start;
+  align-items: start;
+  /* text-indent: 1em; */
+  margin-left: 1em;
+}
+.pocemon_button {
+  background: #2fa6d7;
+  margin: 2em;
+}
+
+/* .pocemon_type {
+  background: #4592c3;
+  padding: 2px 16px;
+  border-radius: 4px;
+  color: white;
+} */
+
+.pocemon_type__group {
+  display: flex;
+  justfiy-content: center;
+  align-items: center;
+  gap: 4px;
+  color: white;
+}
+.pocemon_type__flying {
+  background: linear-gradient(to bottom, #3ec7ed 50%, #bcb9b8 50%);
+  border-radius: 4px;
+  padding: 2px 16px;
+  color: black;
+  width: 6em;
+}
+.pocemon_type__water {
+  background: #2fa6d7;
+  border-radius: 4px;
+  padding: 2px 16px;
+  width: 5.5em;
+}
+
+.pocemon_type__bug {
+  background: #729f3f;
+  border-radius: 4px;
+  padding: 2px 16px;
+  width: 5.5em;
+}
+
+.pocemon_type__electric {
+  background: #eed535;
+  border-radius: 4px;
+  padding: 2px 16px;
+  width: 5.5em;
+  color: black;
+}
+.pocemon_type__normal {
+  background: #a4acaf;
+  border-radius: 4px;
+  padding: 2px 16px;
+  width: 5.5em;
+  color: black;
+}
+.pocemon_type__fire {
+  background: #fd7d24;
+  border-radius: 4px;
+  padding: 2px 16px;
+  width: 5.5em;
+}
+
+.pocemon_name {
+  margin: 0;
+}
