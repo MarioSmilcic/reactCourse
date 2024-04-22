@@ -18,6 +18,7 @@ import Clicks from "./features/Clicks/Clicks";
 import Cart from "./features/Cart/Cart";
 import Items from "./features/Items/Items";
 import ItemsInCart from "./features/Items/components/ItemsInCart";
+import Pocemons from "./features/Pocemons/Pocemons";
 // import CartIcon from "./features/Items/components/CartIcon";
 // import Paragraph from "./Paragraph";
 // import Card from "./Card";
@@ -127,7 +128,7 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/items" element={<Items />} />
           <Route path="/orders" element={<ItemsInCart />} />
-          {/* <Route path="/items" element={<CartIcon />} /> */}
+          <Route path="/pocemons" element={<Pocemons />} />
         </Routes>
       </BrowserRouter>
       {/* <p>Pozdrav Vite + React</p> */}
