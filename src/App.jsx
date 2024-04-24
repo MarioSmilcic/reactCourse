@@ -17,11 +17,13 @@ import Tasks from "./features/Tasks/Tasks";
 import Clicks from "./features/Clicks/Clicks";
 import Cart from "./features/Cart/Cart";
 import Items from "./features/Items/Items";
-import ItemsInCart from "./features/Items/components/ItemsInCart";
+// import ItemsInCart from "./features/Items/components/ItemsInCart";
 import Pocemons from "./features/Pocemons/Pocemons";
+// import ItemsInCart from "./features/Items/components/ItemsInCart";
 // import CartIcon from "./features/Items/components/CartIcon";
 // import Paragraph from "./Paragraph";
 // import Card from "./Card";
+import ItemsInCart from "./features/Items/components/ItemsInCart";
 
 // const profileImg = <img src={ProfileImg} alt="Profile image" />;
 
@@ -127,7 +129,7 @@ const App = () => {
           <Route path="/clicks" element={<Clicks />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/items" element={<Items />} />
-          <Route path="/orders" element={<ItemsInCart />} />
+          <Route path="/itemsInCart" element={<ItemsInCart />} />
           <Route path="/pocemons" element={<Pocemons />} />
         </Routes>
       </BrowserRouter>

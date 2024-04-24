@@ -1,116 +1,85 @@
-import { useCartStore } from "../../../stores/cart/cart";
-import Orders from "./Orders";
+import React from "react";
+import "../items.style.css";
+import { useNavigate } from "react-router-dom";
+import { useOrderCartStore } from "../../../stores/orders/order.store";
 
 const ItemsInCart = () => {
-  const { cart } = useCartStore();
+  const router = useNavigate();
+  const {
+    orders,
+    removeItemFromOrderCart,
+    clearOrderCart,
+    addItemToOrderCart,
+    incrementItemQuantity,
+    decrementItemQuantity,
+  } = useOrderCartStore();
 
-  const emptyCart = "No items in cart";
+  const total = orders.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+
+  const handleOrder = () => {
+    // Here you can implement the logic to send the order to the backend
+    // and clear the cart
+    clearOrderCart();
+    router("/items");
+  };
+
+  const itemTotalPrice = (item) => {
+    const totalItemPrice = item.price * item.quantity;
+    return totalItemPrice.toFixed(2);
+  };
 
   return (
     <div>
-      <div>{cart.length === 0 ? emptyCart : <Orders />}</div>
+      {orders.length ? (
+        <>
+          <h1>Items in Cart</h1>
+          <div className="items_cart">
+            {orders.map((item) => (
+              <div key={item.id} className="item_in_cart">
+                <img className="item_image" src={item.image} alt={item.title} />
+                <h3>{item.title}</h3>
+                <div className="quantity">
+                  <p>${itemTotalPrice(item)}</p>
+                  <div className="quantity_more">
+                    <span
+                      className="quantity_function"
+                      onClick={() => decrementItemQuantity(item)}
+                    >
+                      -
+                    </span>
+                    <span>{item.quantity}</span>
+                    <span
+                      className="quantity_function"
+                      onClick={() => addItemToOrderCart(item)}
+                    >
+                      +
+                    </span>
+                  </div>
+                </div>
+                <img
+                  onClick={() => removeItemFromOrderCart(item.id)}
+                  className="trash_bin"
+                  src="https://cdn-icons-png.freepik.com/256/2706/2706980.png"
+                  alt="Trash Bin Icon"
+                />
+              </div>
+            ))}
+            <p className="total_price">
+              Total price for all items: ${total.toFixed(2)}
+            </p>
+            <button className="order_button" onClick={() => handleOrder()}>
+              Order
+            </button>
+          </div>
+        </>
+      ) : (
+        <h2>No items in cart</h2>
+      )}
     </div>
   );
 };
 
 export default ItemsInCart;
-
-///////////////OLDER SOLUTION////////////////////////////////////
-
-// import { useCartStore } from "../../../stores/cart/cart";
-// import { useClicksStore } from "../../../stores/clicks/clicks.store";
-// import "../items.style.css";
-// import { useNavigate } from "react-router-dom";
-
-// const ItemsInCart = () => {
-//   const { cart, resetCart, removeItemFromCart } = useCartStore();
-//   const { decrementNumberOfClicks, resetClicksCount } = useClicksStore();
-
-//   const navigate = useNavigate();
-//   const handleOrderClick = () => {
-//     navigate("/items");
-//   };
-
-//   const emptyCart = "No items in cart";
-
-//   const totalSum = cart.reduce((total, item) => {
-//     return total + item.price;
-//   }, 0);
-
-//   const items = (
-//     <div className="items_in_cart">
-//       {cart.map((item) => (
-//         <div key={Math.random()} className="item_in_cart">
-//           <img src={item.image} alt={item.title} className="articleImg" />
-//           <h3>{item.title}</h3>
-//           <p>${item.price}</p>
-//           <img
-//             className="recycle"
-//             src="https://cdn-icons-png.flaticon.com/128/11041/11041893.png"
-//             alt="recycle"
-//             onClick={() =>
-//               removeItemFromCart(item.id) & decrementNumberOfClicks()
-//             }
-//           />
-//         </div>
-//       ))}
-//       <div>
-//         <h3>Total price for all items: {totalSum.toFixed(2)}</h3>
-//         <div className="buttons">
-//           <button
-//             className="order_button"
-//             onClick={() =>
-//               resetCart() & resetClicksCount() & handleOrderClick()
-//             }
-//           >
-//             Order
-//           </button>
-//           <button
-//             className="clear_cart"
-//             onClick={() => {
-//               resetCart() & resetClicksCount();
-//             }}
-//           >
-//             Clear Cart
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-//   return (
-//     <div>
-//       <div>{cart.length === 0 ? emptyCart : items}</div>
-//     </div>
-//   );
-// };
-
-// export default ItemsInCart;
-
-///////////////////////FIRST SOLUTION///////////////////////////////////////////////
-
-{
-  /* {cart.length === 0
-          ? emptyCart
-          : cart.map((item) => (
-              <div key={Math.random()} className="item_in_cart">
-                <img src={item.image} alt={item.title} className="articleImg" />
-                <h3>{item.title}</h3>
-                <p>${item.price}</p>
-                <img
-                  className="recycle"
-                  src="https://cdn-icons-png.flaticon.com/128/11041/11041893.png"
-                  alt="recycle"
-                  onClick={() =>
-                    removeItemFromCart(item.id) & decrementNumberOfClicks()
-                  }
-                />
-              </div>
-            ))}
-      </div>
-      <div>
-        <h3>Total price for all items: </h3>
-        <div className="buttons">
-          <button className="order_button">Order</button>
-          <button className="clear_cart">Clear Cart</button>
-        </div> */
-}
