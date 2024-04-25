@@ -1,49 +1,49 @@
+import React from "react";
 import "../items.style.css";
-import { useCartStore } from "../../../stores/cart/cart";
+import { useOrderCartStore } from "../../../stores/orders/order.store";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import { useState } from "react";
 
-import { useClicksStore } from "../../../stores/clicks/clicks.store";
+const Item = ({ item }) => {
+  const [open, setOpen] = useState(false);
 
-// const Item = ({ item }) => {
-const Item = ({ image, title, description, price }) => {
-  const { addItemToCart } = useCartStore();
-  const { incrementNumberOfClicks } = useClicksStore();
+  const handleClick = (item) => {
+    addItemToOrderCart(item);
+    setOpen(true);
+  };
 
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const { addItemToOrderCart } = useOrderCartStore();
   return (
     <div className="item">
-      <img src={image} alt={title} />
+      <img src={item.image} alt={item.title} />
       <div className="item_description">
-        <h3>{title}</h3>
-        <p>{description}</p>
-        <p>${price}</p>
-        <button
-          onClick={() =>
-            addItemToCart({
-              id: Math.random(),
-              image: image,
-              title: title,
-              description: description,
-              price: price,
-            }) & incrementNumberOfClicks()
-          }
-        >
-          {/* <button onClick={() => addItemToCart(item) & incrementNumberOfClicks()}> */}
-          Add to cart
-        </button>
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
+        <p>${item.price}</p>
+        <button onClick={() => handleClick(item)}>Add to cart</button>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity="success"
+            variant="filled"
+            sx={{ width: "100%" }}
+          >
+            Narudzba uspjesna
+          </Alert>
+        </Snackbar>
       </div>
     </div>
   );
 };
 
 export default Item;
-
-// <div className="item">
-//   <img src={item.image} alt={item.title} />
-//   <div className="item_description">
-//     <h3>{item.title}</h3>
-//     <p>{item.description}</p>
-//     <p>{item.price}</p>
-//     <button onClick={() => addItemToCart(item) & incrementNumberOfClicks()}>
-//       Add to cart
-//     </button>
-//   </div>
-// </div>

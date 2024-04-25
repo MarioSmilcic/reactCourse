@@ -1,20 +1,18 @@
-import "../items.style.css";
-import { useNavigate } from "react-router-dom";
-import { useClicksStore } from "../../../stores/clicks/clicks.store";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useOrderCartStore } from '../../../stores/orders/order.store';
 
 const CartIcon = () => {
-  const { clicks } = useClicksStore();
-
+  const { orders } = useOrderCartStore();
   const router = useNavigate();
   const handleClickCart = () => {
-    router("/orders");
+    router('/itemsInCart');
   };
-
   return (
     <div className="cart_icon" onClick={() => handleClickCart()}>
-      <span>{clicks}</span>
+      <span>{orders.length}</span>
       <img
-        src="https://cdn.iconscout.com/icon/free/png-512/free-shopping-cart-1433158-1211836.png?f=webp&w=512"
+        src="https://cdn.iconscout.com/icon/free/png-256/free-shopping-cart-1433158-1211836.png?f=webp"
         alt="Cart Icon"
       />
     </div>
