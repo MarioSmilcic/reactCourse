@@ -3,27 +3,17 @@ import "../items.style.css";
 import { useNavigate } from "react-router-dom";
 import { useOrderCartStore } from "../../../stores/orders/order.store";
 import Snackbar from "@mui/material/Snackbar";
-import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import { useState } from "react";
 
 const ItemsInCart = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  // const [isOpen, setIsOpen] = useState(false);
+  const [isRemoved, setIsRemoved] = useState(false);
   const [isSuccessOrder, setIsSuccessOrder] = useState(false);
 
-  const handleClick = () => {
-    // addItemToOrderCart(item);
-    setIsOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setIsOpen(false);
-  };
+  // const handleClick = () => {
+  //   // addItemToOrderCart(item);
+  //   setIsOpen(true);
+  // };
 
   const router = useNavigate();
 
@@ -31,7 +21,6 @@ const ItemsInCart = () => {
     orders,
     removeItemFromOrderCart,
     clearOrderCart,
-    // addItemToOrderCart,
     increaseItemQuantity,
     decreaseItemQuantity,
   } = useOrderCartStore();
@@ -45,24 +34,30 @@ const ItemsInCart = () => {
     // Here you can implement the logic to send the order to the backend
     // and clear the cart
     clearOrderCart();
-    router("/items");
+    setIsSuccessOrder(true);
+    setTimeout(() => {
+      router("/items");
+    }, 3000);
+  };
+
+  const removeItem = (id) => {
+    removeItemFromOrderCart(id);
+    setIsRemoved(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setIsRemoved(false);
+    setIsSuccessOrder(false);
   };
 
   const itemTotalPrice = (item) => {
     const totalItemPrice = item.price * item.quantity;
     return totalItemPrice.toFixed(2);
   };
-
-  // <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-  //   <Alert
-  //     onClose={handleClose}
-  //     severity="success"
-  //     variant="filled"
-  //     sx={{ width: '100%' }}
-  //   >
-  //     This is a success Alert inside a Snackbar!
-  //   </Alert>
-  // </Snackbar>
 
   return (
     <div>
@@ -93,7 +88,8 @@ const ItemsInCart = () => {
                   </div>
                 </div>
                 <img
-                  onClick={() => removeItemFromOrderCart(item.id)}
+                  // onClick={() => removeItemFromOrderCart(item.id)}
+                  onClick={() => removeItem(item.id)}
                   className="trash_bin"
                   src="https://cdn-icons-png.freepik.com/256/2706/2706980.png"
                   alt="Trash Bin Icon"
@@ -111,14 +107,28 @@ const ItemsInCart = () => {
       ) : (
         <h2>No items in cart</h2>
       )}
-      <Snackbar open={isOpen} autoHideDuration={6000} onClose={handleClose}>
+      <Snackbar open={isRemoved} autoHideDuration={3000} onClose={handleClose}>
         <Alert
           onClose={handleClose}
           severity="success"
           variant="filled"
           sx={{ width: "100%" }}
         >
-          This is a success Alert inside a Snackbar!
+          Item deleted!
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={isSuccessOrder}
+        autoHideDuration={3000}
+        onClose={handleClose}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="info"
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          Order success!
         </Alert>
       </Snackbar>
     </div>
