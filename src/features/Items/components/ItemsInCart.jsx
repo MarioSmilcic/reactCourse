@@ -2,16 +2,38 @@ import React from "react";
 import "../items.style.css";
 import { useNavigate } from "react-router-dom";
 import { useOrderCartStore } from "../../../stores/orders/order.store";
+import Snackbar from "@mui/material/Snackbar";
+import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
+import { useState } from "react";
 
 const ItemsInCart = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+  const [isSuccessOrder, setIsSuccessOrder] = useState(false);
+
+  const handleClick = () => {
+    // addItemToOrderCart(item);
+    setIsOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setIsOpen(false);
+  };
+
   const router = useNavigate();
+
   const {
     orders,
     removeItemFromOrderCart,
     clearOrderCart,
-    addItemToOrderCart,
-    incrementItemQuantity,
-    decrementItemQuantity,
+    // addItemToOrderCart,
+    increaseItemQuantity,
+    decreaseItemQuantity,
   } = useOrderCartStore();
 
   const total = orders.reduce(
@@ -31,6 +53,17 @@ const ItemsInCart = () => {
     return totalItemPrice.toFixed(2);
   };
 
+  // <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+  //   <Alert
+  //     onClose={handleClose}
+  //     severity="success"
+  //     variant="filled"
+  //     sx={{ width: '100%' }}
+  //   >
+  //     This is a success Alert inside a Snackbar!
+  //   </Alert>
+  // </Snackbar>
+
   return (
     <div>
       {orders.length ? (
@@ -46,14 +79,14 @@ const ItemsInCart = () => {
                   <div className="quantity_more">
                     <span
                       className="quantity_function"
-                      onClick={() => decrementItemQuantity(item)}
+                      onClick={() => decreaseItemQuantity(item.id)}
                     >
                       -
                     </span>
                     <span>{item.quantity}</span>
                     <span
                       className="quantity_function"
-                      onClick={() => addItemToOrderCart(item)}
+                      onClick={() => increaseItemQuantity(item.id)}
                     >
                       +
                     </span>
@@ -78,6 +111,16 @@ const ItemsInCart = () => {
       ) : (
         <h2>No items in cart</h2>
       )}
+      <Snackbar open={isOpen} autoHideDuration={6000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          This is a success Alert inside a Snackbar!
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
